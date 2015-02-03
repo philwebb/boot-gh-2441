@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class GreetingController {
 
-    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
+	@Autowired
+	private SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) throws Exception {
-        Thread.sleep(3000); // simulated delay
-        return new Greeting("Hello, " + message.getName() + "!");
-    }
+	@MessageMapping("/hello")
+	@SendTo("/topic/greetings")
+	public Greeting greeting(HelloMessage message) throws Exception {
+		Thread.sleep(3000); // simulated delay
+		return new Greeting("Hello, " + message.getName() + "!");
+	}
 
-    @RequestMapping(value="/hellorest", method = RequestMethod.POST)
-    public void greet(@RequestBody HelloMessage message) {
-        Greeting greeting = new Greeting("Hello, " + message.getName() + "!");
-        simpMessagingTemplate.convertAndSend("/topic/greetings", greeting);
-    }
+	@RequestMapping(value = "/hellorest", method = RequestMethod.POST)
+	public void greet(@RequestBody HelloMessage message) {
+		Greeting greeting = new Greeting("Hello, " + message.getName() + "!");
+		simpMessagingTemplate.convertAndSend("/topic/greetings", greeting);
+	}
 }

@@ -11,15 +11,15 @@ import org.springframework.hateoas.config.EnableEntityLinks;
 
 @Configuration
 @ComponentScan
-@EnableJpaRepositories(value = {"com.marvinguerra.sample.dao.mysql"})
-@EnableMongoRepositories(value = {"com.marvinguerra.sample.dao.mongo"})
+@EnableJpaRepositories(value = { "com.marvinguerra.sample.dao.mysql" })
+@EnableMongoRepositories(value = { "com.marvinguerra.sample.dao.mongo" })
 @EnableEntityLinks
 @EnableAutoConfiguration
-@ImportResource({
-        "securityContext.xml"
-})
+@ImportResource({ "securityContext.xml" })
 public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
 }
